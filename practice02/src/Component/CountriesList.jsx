@@ -1,11 +1,14 @@
-import React from 'react'
-import countriesData from '../CountriesData.jsx'
-import CountryCard from './CountryCard'
+import React, { useState } from "react";
+import CountryCard from "./CountryCard";
+import CountriesData from "../CountriesData.jsx";
 
-export default function CountriesList() {
+export default function CountriesList({query}) {
+  
   return (
     <div className="countries-container">
-      {countriesData.map((country) => {
+      {CountriesData.filter((country) =>
+    country.name.common.toLowerCase().includes(query)
+  ).map((country) => {
         return (
           <CountryCard
             key={country.name.common}
@@ -15,8 +18,8 @@ export default function CountriesList() {
             region={country.region}
             capital={country.capital?.[0]}
           />
-        )
+        );
       })}
     </div>
-  )
+  );
 }
