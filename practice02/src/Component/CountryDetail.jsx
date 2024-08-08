@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import "./CountryDetail.css";
 
 export default function CountryDetail() {

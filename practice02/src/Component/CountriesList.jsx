@@ -12,15 +12,15 @@ export default function CountriesList({query}) {
     })
   }, [])
 
-    useEffect(() => {
-      console.log("hiii");
-    }, [count]);
+    // useEffect(() => {
+    //   console.log("hiii");
+    // }, [count]);
 
   
   return (
     <>
-    <h1>{count}</h1>
-    <button onClick={() => setCount(count + 1)}>Incrememt</button>
+    {/* <h1>{count}</h1> */}
+    {/* <button onClick={() => setCount(count + 1)}>Incrememt</button> */}
       <div className="countries-container">
         {countriesData
           .filter((country) =>
