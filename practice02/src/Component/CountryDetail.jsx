@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "./CountryDetail.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function CountryDetail() {
   const params = useParams()
@@ -30,11 +30,23 @@ export default function CountryDetail() {
           currencies: Object.values(data.currencies)
             .map((currency) => currency.name)
             .join(", "),
-        });
+            borders: [],
+        })
+        if(!data.borders){
+          data.borders = []
+        }
+
+        Promise.all(data.borders.map((border) => {
+          return fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+          .then((res) => res.json())
+          .then(([borderCountry]) => borderCountry.name.common)
+        })).then((borders) => {
+          setCountryData((prevState) => ({...prevState, borders}))
+        })
       }).catch((err) => {
         setNotFound(true)
       })
-  }, []);
+  }, [countryName]);
   if(notFound){
     return <h1>Country Not Found</h1>
   }
@@ -86,6 +98,14 @@ export default function CountryDetail() {
                 <span className="languages"></span>
               </p>
             </div>
+            { countryData.borders.length !== 0 &&
+              <div className="border-countries">
+                <b>Border Countries: </b>&nbsp;
+                {
+                  countryData.borders.map((border) => <Link key={border} to={`/${border}`}>{border}</Link>)
+                }
+              </div>
+            }
           </div>
         </div>
       </div>
