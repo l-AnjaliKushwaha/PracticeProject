@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CountryCard from "./CountryCard";
-// import CountriesData from "../CountriesData.jsx";
+import CountriesListShimmer from "./CountriesListShimmer";
 
 export default function CountriesList({query}) {
   const [countriesData, setCounteriesData] = useState([])
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all').then((res) => res.json()).then((data) => {
@@ -12,16 +11,10 @@ export default function CountriesList({query}) {
     })
   }, [])
 
-    // useEffect(() => {
-    //   console.log("hiii");
-    // }, [count]);
-
-  
   return (
     <>
-    {/* <h1>{count}</h1> */}
-    {/* <button onClick={() => setCount(count + 1)}>Incrememt</button> */}
-      <div className="countries-container">
+    {!countriesData.length ? (<CountriesListShimmer/>) :
+      (<div className="countries-container">
         {countriesData
           .filter((country) =>
             country.name.common.toLowerCase().includes(query)
@@ -39,6 +32,7 @@ export default function CountriesList({query}) {
             );
           })}
       </div>
+)}
     </>
   );
 }

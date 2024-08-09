@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import "./CountryDetail.css";
 import { Link, useParams } from "react-router-dom";
 
@@ -50,6 +49,7 @@ export default function CountryDetail() {
   if(notFound){
     return <h1>Country Not Found</h1>
   }
+ 
   return countryData === null ? (
     "loading..."
   ) : (
