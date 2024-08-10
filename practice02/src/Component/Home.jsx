@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import SearchBar from "./SearchBar.jsx";
 import SelectMenu from "./SelectMenu.jsx";
 import CountriesList from "./CountriesList.jsx";
-import { useOutletContext } from "react-router-dom";
+import ThemeContext from "../Contexts/ThemeContext.jsx";
 
 function Home() {
             const [query, setQuery] = useState("");
-            const [isDark] = useOutletContext()
+            const [isDark] = useContext(ThemeContext);
   return (
     <>
       <main className={`${isDark? 'dark' : ''}`}>
