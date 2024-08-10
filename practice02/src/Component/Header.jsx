@@ -1,20 +1,21 @@
-import React from 'react'
+import { useContext } from "react";
+import { ThemeContext } from "../Contexts/ThemeContext";
 
-function Header({theme}) {
-  const[isDark, setIsDark] = theme
+export default function Header() {
+  const [isDark, setIsDark] = useContext(ThemeContext);
 
-//   if(isDark){
-// document.body.classList.add("dark");
-//   }
-//   else{
-//     document.body.classList.remove("dark");
-//   }
+  // if(isDark) {
+  //   document.body.classList.add('dark')
+  // } else {
+  //   document.body.classList.remove('dark')
+  // }
+
   return (
-    <header className={`header-container ${isDark? 'dark': ''}`}>
+    <header className={`header-container ${isDark ? "dark" : ""}`}>
       <div className="header-content">
-        <h1 className="title">
+        <h2 className="title">
           <a href="/">Where in the world?</a>
-        </h1>
+        </h2>
         <p
           className="theme-changer"
           onClick={() => {
@@ -22,13 +23,10 @@ function Header({theme}) {
             localStorage.setItem("isDarkMode", !isDark);
           }}
         >
-          <i className={`fa-solid fa-${isDark ? "sun" : "moon"}`}>
-            &nbsp; &nbsp; {isDark ? "Light" : "Dark"} Mode
-          </i>
+          <i className={`fa-solid fa-${isDark ? "sun" : "moon"}`} />
+          &nbsp;&nbsp;{isDark ? "Light" : "Dark"} Mode
         </p>
       </div>
     </header>
   );
 }
-
-export default Header
