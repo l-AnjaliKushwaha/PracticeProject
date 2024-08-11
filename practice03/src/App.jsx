@@ -1,19 +1,14 @@
-import { useState } from 'react'
+import React from 'react'
+import Test01 from './Componets/Test01.jsx'
 import './App.css'
 
-function App({isLoggedIn = true}) {
-  const [count, setCount] = useState(0)
-  
-
+function App() {
   return (
-    <>
-      <h1>{count}</h1>
-      <button onClick={() => setCount(count+1)}>Increment</button>
-      {
-        isLoggedIn ? <h2>Hello, User!</h2> : <h2>Please Login</h2>
-      }
-    </>
+    <div>
+      <Test01></Test01>
+    </div>
   )
 }
 
 export default App
+
