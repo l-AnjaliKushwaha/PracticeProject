@@ -1,4 +1,4 @@
-import Header from "./Component/Header";
+import Header from "./Component/Header.jsx";
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider } from "./Contexts/ThemeContext";

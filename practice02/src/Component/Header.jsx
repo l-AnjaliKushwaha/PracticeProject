@@ -1,14 +1,7 @@
-import { useContext } from "react";
-import { ThemeContext } from "../Contexts/ThemeContext";
+import { useTheme } from "../Hooks/useTheme";
 
 export default function Header() {
-  const [isDark, setIsDark] = useContext(ThemeContext);
-
-  // if(isDark) {
-  //   document.body.classList.add('dark')
-  // } else {
-  //   document.body.classList.remove('dark')
-  // }
+  const [isDark, setIsDark] = useTheme();
 
   return (
     <header className={`header-container ${isDark ? "dark" : ""}`}>
